@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WeatherReportService {
 
-    private static final String API_KEY = "your-api-key";
+    private static final String API_KEY = "f2a49fad26dcaa60f14251fc4815fb9d";
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
     public WeatherReport getWeatherReport(double latitude, double longitude) {
@@ -18,8 +18,17 @@ public class WeatherReportService {
 
         WeatherReport report = new WeatherReport();
         WeatherApiResponse.Main main = response.getMain();
-        report.setTemperature(main.getTemperature());
+
+        double temperaturaCelcius = main.getTemperature() - 273.15;
+        report.setTemperature(temperaturaCelcius);
+
         report.setHumidity(main.getHumidity());
+
+
+        // prueba por que me esta devolviendo una temperatua en 0.0
+        System.out.println("URL de la solicitud: " + url);
+        System.out.println("Respuesta de la API: " + response);
+
 
         return report;
     }
