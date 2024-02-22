@@ -42,7 +42,6 @@ class WeatherApplicationTests {
 
 		WeatherReport actualWeatherReport = weatherReportController.getWeatherReport(latitude, longitude);
 
-		// Asegúrate de que el método equals en WeatherReport esté implementado correctamente
 		assertEquals(expectedWeatherReport, actualWeatherReport);
 	}
 
